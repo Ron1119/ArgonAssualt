@@ -1,0 +1,2 @@
+C:\Users\Lyu19\OneDrive\Desktop\gamebuild\Argon_Assault\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Lyu19\OneDrive\Desktop\gamebuild\Argon_Assault\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
