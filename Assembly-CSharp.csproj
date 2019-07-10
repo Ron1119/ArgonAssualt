@@ -61,9 +61,10 @@
      <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
-     <Compile Include="Assets\Scipts\LoadScene.cs" />
-     <Compile Include="Assets\musicplayer1.cs" />
-     <Compile Include="Assets\player1.cs" />
+     <Compile Include="Assets\Scipts\PlayerController.cs" />
+     <Compile Include="Assets\Scipts\collisionHandler.cs" />
+     <Compile Include="Assets\Scipts\loadScene.cs" />
+     <Compile Include="Assets\Scipts\musicplayer1.cs" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Lyu19/OneDrive/Desktop/gamebuild/Argon_Assault/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

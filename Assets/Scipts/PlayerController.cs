@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class player1 : MonoBehaviour
+public class PlayerController: MonoBehaviour
 {
-    [Tooltip("In ms^-1")] [SerializeField] float xSpeed = 5f;
+    
+    [Header ("General")]
+    [Tooltip("In ms^-1")] [SerializeField] float xSpeed = 15f;
+    [Tooltip("In ms^-1")] [SerializeField] float ySpeed = 15f;
     [Tooltip("In m")] [SerializeField] float xRange = 5f;
-
-    [Tooltip("In ms^-1")] [SerializeField] float ySpeed = 4f;
     [Tooltip("In m")] [SerializeField] float yRange = 3f;
 
-    [SerializeField] float positionPitchFactor = -5f;
-    [SerializeField] float controlPitchFactor = -5f;
+    [Header("Screen-Position Based")]
 
+  
+    
+    [SerializeField] float positionPitchFactor = -5f;
+    [SerializeField] float positionYawFactor = -10f;
+
+    [Header("Control-throw Based")]
     //[SerializeField] float positionYawFactor = -5f;
-    [SerializeField] float controlYawFactor = -5f;
-    [SerializeField] float controlRollFactor = -5f;
+    [SerializeField] float controlPitchFactor = -5f;
+    [SerializeField] float controlRollFactor = -40f;
 
     // Start is called before the first frame update
     float xThrow, yThrow;
+    bool isControlEnabled = true;
 
     void Start()
     {
@@ -28,21 +35,21 @@ public class player1 : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     { print("Player collide something");
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        print("trigger something");
-    }
+   
         // Update is called once per frame
         void Update()
     {
         ProcessTranslation();
         ProcessRotation();
     }
+    void OnPlayerDeath()  // used to receive the message from other scripts
+    { print("Controller is frozen");
+    }
 
     private void ProcessRotation()
     {
         float pitch = transform.localPosition.y * positionPitchFactor + controlPitchFactor * yThrow;
-        float yaw = xThrow * controlYawFactor;
+        float yaw = xThrow * positionYawFactor;
         float roll = xThrow * controlRollFactor;
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
