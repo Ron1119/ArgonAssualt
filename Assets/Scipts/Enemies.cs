@@ -9,17 +9,25 @@ public class Enemies : MonoBehaviour
 
     [SerializeField] GameObject deathFX; // create object for use the enemy explosion
     [SerializeField] Transform parent;
+    [SerializeField] int scorePerHit = 12;
+
+    ScoreBoard scoreBoard;
     void Start()
     {
         // gameObject.AddComponent<BoxCollider>();  // add the boxcollider at the beginning of the game
+        AddBoxCollider();
+        scoreBoard = FindObjectOfType<ScoreBoard>();
+    }
+
+    private void AddBoxCollider()
+    {
         Collider boxCollider = gameObject.AddComponent<BoxCollider>();  // assign a name to the component
         boxCollider.isTrigger = false;
-        
     }
 
     void OnParticleCollision(GameObject other)
     {
-
+        scoreBoard.ScoreHit(scorePerHit);
         GameObject fx =Instantiate(deathFX, transform.position, Quaternion.identity); // add the particle effect to current object, and dont rotate the particle
         // print("Particles collided with enemy " + gameObject.name);
         fx.transform.parent = parent;
