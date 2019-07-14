@@ -39,11 +39,14 @@ public class PlayerController: MonoBehaviour
         // Update is called once per frame
         void Update()
     {
+        if (isControlEnabled) { 
         ProcessTranslation();
         ProcessRotation();
+        }
     }
     void OnPlayerDeath()  // used to receive the message from other scripts
-    { print("Controller is frozen");
+    {
+        isControlEnabled = false;
     }
 
     private void ProcessRotation()
