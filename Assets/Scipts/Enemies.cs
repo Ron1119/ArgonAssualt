@@ -8,10 +8,10 @@ public class Enemies : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] GameObject deathFX; // create object for use the enemy explosion
-    // [SerializeField] GameObject hitFX;  // TODO generate hitting effect
+    [SerializeField] GameObject hitFX;  // TODO generate hitting effect
     [SerializeField] Transform parent;
     [SerializeField] int scorePerHit = 12;
-    [SerializeField] int maxHits = 10;  // the number of hits the enemy can sustain
+    [SerializeField] int maxHits = 8;  // the number of hits the enemy can sustain
 
     ScoreBoard scoreBoard;
     void Start()
@@ -38,9 +38,10 @@ public class Enemies : MonoBehaviour
 
     private void ProcessHit()
     {
+        hitFX.SetActive(false); // reset defaultly the effect to inactivity
         scoreBoard.ScoreHit(scorePerHit);
         maxHits--;
-        // hitFX.SetActive(true); // TODO add effect when being hitted
+        hitFX.SetActive(true); // TODO add effect when being hitted
     }
 
     private void KillEnemy()

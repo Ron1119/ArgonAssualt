@@ -36,7 +36,8 @@ public class PlayerController: MonoBehaviour
 
     }
     void OnCollisionEnter(Collision collision)
-    { print("Player collide something");
+    {
+        print("Player collide something");
     }
    
         // Update is called once per frame
@@ -62,7 +63,7 @@ public class PlayerController: MonoBehaviour
         }
     }
 
-   
+
 
     private  void ActivateGun()
     {
