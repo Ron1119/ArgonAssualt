@@ -8,8 +8,10 @@ public class Enemies : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] GameObject deathFX; // create object for use the enemy explosion
+    // [SerializeField] GameObject hitFX;  // TODO generate hitting effect
     [SerializeField] Transform parent;
     [SerializeField] int scorePerHit = 12;
+    [SerializeField] int maxHits = 10;  // the number of hits the enemy can sustain
 
     ScoreBoard scoreBoard;
     void Start()
@@ -27,13 +29,25 @@ public class Enemies : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        scoreBoard.ScoreHit(scorePerHit);
-        GameObject fx =Instantiate(deathFX, transform.position, Quaternion.identity); // add the particle effect to current object, and dont rotate the particle
-        // print("Particles collided with enemy " + gameObject.name);
-        fx.transform.parent = parent;
-         Destroy(gameObject);
+        ProcessHit();
+        if (maxHits < 1)
+        {
+            KillEnemy();
+        }
     }
 
+    private void ProcessHit()
+    {
+        scoreBoard.ScoreHit(scorePerHit);
+        maxHits--;
+        // hitFX.SetActive(true); // TODO add effect when being hitted
+    }
 
-
+    private void KillEnemy()
+    {
+        GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity); // add the particle effect to current object, and dont rotate the particle
+        // print("Particles collided with enemy " + gameObject.name);
+        fx.transform.parent = parent;
+        Destroy(gameObject);
+    }
 }

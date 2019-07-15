@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -24,6 +25,8 @@ public class PlayerController: MonoBehaviour
     [SerializeField] float controlPitchFactor = -5f;
     [SerializeField] float controlRollFactor = -40f;
 
+    [SerializeField] GameObject[] guns;
+
     // Start is called before the first frame update
     float xThrow, yThrow;
     bool isControlEnabled = true;
@@ -42,6 +45,39 @@ public class PlayerController: MonoBehaviour
         if (isControlEnabled) { 
         ProcessTranslation();
         ProcessRotation();
+        ProcessFiring();
+        }
+    }
+
+    private void ProcessFiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire"))
+        {
+            ActivateGun();
+
+        }
+        else
+        {
+            DeactivateGun();
+        }
+    }
+
+   
+
+    private  void ActivateGun()
+    {
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(true);
+
+        }
+    }
+    private  void DeactivateGun()
+    {
+        foreach (GameObject gun in guns) // in static the guns keyword will throw an error
+        {
+            gun.SetActive(false);
+
         }
     }
     void OnPlayerDeath()  // used to receive the message from other scripts
