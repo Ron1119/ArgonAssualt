@@ -11,7 +11,7 @@ public class Enemies : MonoBehaviour
     // [SerializeField] GameObject hitFX;  // TODO generate hitting effect
     [SerializeField] Transform parent;
     [SerializeField] int scorePerHit = 12;
-    [SerializeField] int maxHits = 10;  // the number of hits the enemy can sustain
+    [SerializeField] int maxHits = 6;  // the number of hits the enemy can sustain
 
     ScoreBoard scoreBoard;
     void Start()
